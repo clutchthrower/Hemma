@@ -49,7 +49,7 @@ You’ll need:
   - [button-card](https://github.com/custom-cards/button-card)
   - [layout-card](https://github.com/thomasloven/lovelace-layout-card)  
     > Homio originally uses a slightly modified version; check the original repo if you want to stick to that approach.
-  - [lovelace-navbar-card](https://github.com/joseluis9595/lovelace-navbar-card)
+  - [lovelace-navbar-card](https://github.com/joseluis9595/lovelace-navbar-card) (for mobile view navigation)
   - [my-slider-v2](https://github.com/AnthonMS/my-cards/blob/main/docs/cards/slider-v2.md) (for light sliders)
   - Any additional cards you use in your setup (e.g. `browser_mod`, `auto-entities`, etc.)
 
@@ -85,7 +85,7 @@ Example layout:
         ├── icons/                # Optional: UI icons
         └── images/               # Optional: room/background images
 
----
+```
 
 ## Installation
 
@@ -123,7 +123,7 @@ Restart Home Assistant or reload themes/resources as needed.
 
 ### 3. Register the dashboard
 
-In `configuration.yaml` (or wherever you define dashboards), add something like:
+In `configuration.yaml` (or wherever you define dashboards), add the following:
 
 ```yaml
 lovelace:
@@ -131,35 +131,40 @@ lovelace:
   dashboards:
     dashboard-homio-next:
       mode: yaml
-      title: "Homio Next"
-      icon: mdi:home-outline
+      title: "Homio"
+      icon: mdi:home
       show_in_sidebar: true
       filename: dashboards/homio-next/homio.yaml
+```
 
-Restart Home Assistant, then refresh your browser and open Homio Next from the sidebar.
+Restart Home Assistant, then refresh your browser and open **Homio Next** from the sidebar.
+
+---
 
 ### 4. Configure entities & helpers
 
 - Update entity IDs in the YAML files to match your own setup (lights, media players, sensors, etc.).
+- Make sure everything defined in `packages/homio_helpers.yaml` exists in your config and uses the correct entity IDs.
 
-- Make sure everything defined in packages/homio_helpers.yaml exists in your config and uses the correct entity IDs.
+---
 
-**Customization**
+## Customization
 
 This repo is intended as a starting point:
 
-- Swap out room/background images in www/homio-next/images/.
-
-- Tweak theme colors, shadows, and typography in themes/homio-next/homio-next.yaml.
-
-- Adjust layouts (homio_screen_layout.yaml, homio_entity_layout.yaml, etc.) to match your devices and preferences.
+- Swap out room/background images in `www/homio-next/images/`.
+- Tweak theme colors, shadows, and typography in `themes/homio-next/homio-next.yaml`.
+- Adjust layouts (`homio_entity_layout.yaml`, etc.) to match your devices and preferences.
 
 Because it’s all YAML, you can copy/paste specific cards or layouts into your own dashboards if you don’t want the full setup.
 
-**Credits**
+---
 
-Original Homio concept and base implementation: iamtherufus/Homio
+## Credits
 
-Homio-Next customization and ongoing tweaks: @willsanderson
+- Original Homio concept and base implementation: [iamtherufus/Homio](https://github.com/iamtherufus/Homio)
+- Homio-Next customization and ongoing tweaks: [@willsanderson](https://github.com/willsanderson)
 
-License: MIT (same as the original Homio project).
+**License:** MIT (same as the original Homio project).
+
+
