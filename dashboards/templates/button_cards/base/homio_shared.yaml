@@ -1,14 +1,14 @@
-homio_hero_common:
+homio_shared:
   extra_styles: |
     :host{
       position: relative;
       z-index: 0;
-      --hero-gutter: var(--page-gutter, 8vw);
-      --hero-top: var(--header-top-desktop, clamp(300px, 28vh, 380px));
-      --row-left-pad: 4px;
+      --hero-gutter: var(--content-rail,
+                      var(--homio-rail-left,
+                      var(--page-gutter, 8vw)));
+      --hero-top: var(--header-top-desktop, clamp(220px, 26vh, 340px));
+      --row-left-pad: 0px;
       --homio-hover-filter: none !important;
-      --menu-icon-offset: var(--menu-icon-offset-desktop, 24px);
-      --menu-icon-gutter: var(--menu-icon-gutter, 19px);
     }
 
     :host ha-card{
@@ -27,6 +27,8 @@ homio_hero_common:
       background-size: cover, cover !important;
       background-attachment: local, local !important;
       isolation: isolate !important;
+      overflow-x: hidden !important;
+      overflow-y: hidden !important;
     }
 
     :host ha-card:hover,
@@ -36,16 +38,6 @@ homio_hero_common:
       box-shadow:none !important;
       transform:none !important;
       cursor:default !important;
-    }
-
-    /* Foreground interactive */
-    :host .button-card-main,
-    :host .button-card-content,
-    :host .custom-field,
-    :host .grid,
-    :host .name,
-    :host .actions{
-      pointer-events:auto !important;
     }
 
     /* Background image */
@@ -77,9 +69,9 @@ homio_hero_common:
       z-index:-1;
       background: linear-gradient(
         to bottom,
-        var(--hero-tint-top, rgba(56,56,56,0.65)) 0%,
-        var(--hero-tint-mid, rgba(53,53,53,0.60)) 50%,
-        var(--hero-tint-bottom, rgba(50,50,50,0.50)) 100%
+        var(--hero-tint-top, rgba(56,56,56,0.50)) 0%,
+        var(--hero-tint-mid, rgba(53,53,53,0.45)) 50%,
+        var(--hero-tint-bottom, rgba(50,50,50,0.40)) 100%
       );
     }
 
@@ -98,22 +90,21 @@ homio_hero_common:
     /* Tablet */
     @media (min-width:769px) and (max-width:1249px){
       :host{
-        --hero-gutter: var(--page-gutter-desktop, 8vw);
         --hero-top: var(--header-top-tablet, clamp(300px, 28vh, 380px));
       }
     }
 
-    /* ===== MOBILE ===== */
+    /* Mobile */
     @media (max-width:768px), (max-height:500px){
       :host{
-        --hero-gutter: var(--page-gutter-mobile, 14px);
         --hero-top: var(--header-top-mobile, clamp(80px, 12vh, 120px));
         --tiles-pad-bottom: calc(130px + env(safe-area-inset-bottom));
+        --row-left-pad: 0px;
+        --hero-gutter: var(--homio-rail-left, var(--page-gutter-mobile, 10px));
         --menu-icon-offset: var(--menu-icon-offset-mobile, 20px);
         --menu-icon-gutter: var(--page-gutter-mobile, 14px);
       }
 
-      /* Hero “shell” fixed and non-scrollable */
       :host ha-card{
         position: fixed !important;
         inset: 0 !important;
@@ -126,7 +117,6 @@ homio_hero_common:
         padding: 0 !important;
       }
 
-      /* Inner content of hero (title/badges/nav etc.) */
       :host .button-card-main{
         position: fixed !important;
         inset: 0 !important;
@@ -149,6 +139,7 @@ homio_hero_common:
         margin: 0 !important;
         padding: 0 !important;
         overflow: visible !important;
+        overflow-x: hidden !important;
       }
 
       :host .button-card-content,

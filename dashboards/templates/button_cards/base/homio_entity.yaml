@@ -23,7 +23,7 @@ homio_entity:
       value: |
         [[[
           const s = (entity?.state || "").toLowerCase();
-          return ["on","playing","unlocked"].includes(s);
+          return ["on","playing","unlocked","cleaning"].includes(s);
         ]]]
       styles:
         card:
@@ -50,15 +50,24 @@ homio_entity:
       - position: relative
       - height: |
           [[[
-            return (window.innerWidth <= 1249) ? '120px' : '145px';
+            const isMobile = window.innerWidth <= 768;
+            return isMobile
+              ? 'var(--homio-entity-height-mobile, 120px)'
+              : 'var(--homio-entity-height-desktop, 180px)';
           ]]]
       - padding-left: |
           [[[
-            return (window.innerWidth <= 1249) ? '20px' : '32px';
+            const isMobile = window.innerWidth <= 768;
+            return isMobile
+              ? 'var(--homio-entity-padding-mobile, 20px)'
+              : 'var(--homio-entity-padding-desktop, 32px)';
           ]]]
       - padding-right: |
           [[[
-            return (window.innerWidth <= 1249) ? '20px' : '32px';
+            const isMobile = window.innerWidth <= 768;
+            return isMobile
+              ? 'var(--homio-entity-padding-mobile, 20px)'
+              : 'var(--homio-entity-padding-desktop, 32px)';
           ]]]
       - padding-top: 8px
       - padding-bottom: 8px
@@ -81,7 +90,10 @@ homio_entity:
       - margin-bottom: 5px
       - font-size: |
           [[[
-            return (window.innerWidth <= 768) ? '15px' : '16px';
+            const isMobile = window.innerWidth <= 768;
+            return isMobile
+              ? 'var(--homio-entity-name-font-mobile, 15px)'
+              : 'var(--homio-entity-name-font-desktop, 16px)';
           ]]]
       - line-height: 1.2
       - white-space: nowrap
@@ -94,7 +106,10 @@ homio_entity:
       - color: var(--homio-entity-inactive, var(--secondary-text-color)) !important
       - font-size: |
           [[[
-            return (window.innerWidth <= 768) ? '13px' : '14px';
+            const isMobile = window.innerWidth <= 768;
+            return isMobile
+              ? 'var(--homio-entity-state-font-mobile, 13px)'
+              : 'var(--homio-entity-state-font-desktop, 14px)';
           ]]]
       - text-shadow: 0 0 2px rgba(0, 0, 0, 0.1)
       - justify-self: start

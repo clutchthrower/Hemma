@@ -2,7 +2,7 @@ homio_room:
   class: "homio-hero"
   template:
     - homio_default
-    - homio_hero_common
+    - homio_shared
 
   triggers_update:
     - '[[[ return variables.motion_sensor ]]]'
@@ -50,7 +50,6 @@ homio_room:
           [[[
             return variables.image_position || 'center center';
           ]]]
-      - overflow: hidden
       - box-shadow: none !important
       - transform: translateZ(0)
       - will-change: transform
@@ -63,6 +62,7 @@ homio_room:
       - letter-spacing: "-2px"
       - font-weight: 700
       - justify-self: start
+      - padding-left: 0
       - line-height: >
           [[[
             const w = window?.innerWidth || 1024;
@@ -78,6 +78,11 @@ homio_room:
             const w = window?.innerWidth || 1024;
             return (w <= 768) ? '0px' : '5px';
           ]]]
+      - margin-left: >
+          [[[
+            const w = window?.innerWidth || 1024;
+            return (w <= 768) ? '0px' : '-2px';
+          ]]]
       - overflow: visible
 
     grid:
@@ -89,7 +94,7 @@ homio_room:
           "badges"
           "badges_media"
       - align-content: start
-      - row-gap: 2px
+      - row-gap: 0px
 
     custom_fields:
       motion_detection:
@@ -133,7 +138,7 @@ homio_room:
         - letter-spacing: 1px
         - text-transform: uppercase
         - margin: 0
-        - padding-left: var(--row-left-pad)
+        - padding-left: 2px
         - "--button-card-ripple-color": transparent
         - "-webkit-tap-highlight-color": transparent
 
@@ -141,7 +146,7 @@ homio_room:
         - grid-area: badges
         - justify-self: start
         - margin-top: 0
-        - padding-left: var(--row-left-pad)
+        - padding-left: 0
         - pointer-events: auto
         - display: >
             [[[
@@ -154,6 +159,7 @@ homio_room:
         - grid-area: badges_media
         - justify-self: start
         - margin-top: 0
+        - padding-left: 2px
         - pointer-events: auto
         - display: >
             [[[
@@ -173,16 +179,13 @@ homio_room:
 
       menu:
         - position: fixed
-        - top: >
-            [[[
-              return '8px';
-            ]]]
+        - top: 8px
         - left: >
             [[[
               const w = window?.innerWidth || 1024;
               const h = window?.innerHeight || 800;
               if (w <= 768 || h <= 500) {
-                return '4px';
+                return 'calc(var(--hero-gutter) - 11px)';
               }
               return '12px';
             ]]]
@@ -222,10 +225,11 @@ homio_room:
         type: custom:layout-card
         layout_type: custom:grid-layout
         layout:
-          grid-template-columns: repeat(12, max-content)
-          grid-auto-flow: row dense
-          column-gap: 12px
-          row-gap: 8px
+          grid-auto-flow: column
+          grid-auto-columns: max-content
+          grid-template-columns: none
+          column-gap: var(--badge-gap-current, var(--badge-gap, 8px))
+          row-gap: 0
           margin: 0
         cards:
           - type: custom:button-card

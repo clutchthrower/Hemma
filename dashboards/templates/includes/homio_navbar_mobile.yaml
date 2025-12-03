@@ -118,13 +118,15 @@ card:
       opacity:1;
     }
 
-    .navbar .route .button .icon{
-      --icon-primary-color: var(--homio-nav-icon) !important;
-      opacity: var(--homio-nav-inactive-opacity, .8);
+    .navbar .route .button .icon,
+    .navbar .route .button img,
+    .navbar .route .button .label{
+      position: relative;
+      z-index: 1;
     }
 
-    .navbar .route .button img{
-      opacity: var(--homio-nav-inactive-opacity, .8);
+    .navbar .route .button .icon{
+      --icon-primary-color: var(--homio-nav-icon) !important;
     }
 
     .navbar .route .button .label{
@@ -138,12 +140,6 @@ card:
     .navbar .route.active .button .icon,
     .navbar .route .button.active .icon{
       --icon-primary-color: var(--homio-nav-icon-active, var(--homio-nav-icon)) !important;
-      opacity: 1 !important;
-    }
-
-    .navbar .route.active .button img,
-    .navbar .route .button.active img{
-      opacity: 1 !important;
     }
 
     .navbar .route.active .button .label,

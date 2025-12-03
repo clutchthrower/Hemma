@@ -22,7 +22,6 @@ homio_badge_base:
       - --badge-title-color: var(--primary-text-color)
       - --badge-sub-color: var(--secondary-text-color)
       - background-clip: padding-box
-      - contain: paint
       - overflow: hidden
     grid:
       - grid-template-areas: '"i l"'
@@ -34,39 +33,66 @@ homio_badge_base:
       - min-width: 0
       - color: var(--badge-title-color, var(--secondary-text-color))
       - font-weight: 700
-      - font-size: var(--badge-font-size-current, 13px)
+      - font-size: var(--badge-font-size-current, var(--badge-font-size, 13px))
       - line-height: 1.2
       - text-align: left
       - justify-self: start
       - z-index: 4
     icon:
       - grid-area: i
-      - width: var(--badge-icon-size-current, 28px)
-      - height: var(--badge-icon-size-current, 28px)
+      - width: var(--badge-icon-size-current, var(--badge-icon-size, 28px))
+      - height: var(--badge-icon-size-current, var(--badge-icon-size, 28px))
       - color: var(--primary-text-color)
       - z-index: 4
       - margin-inline-start: var(--badge-icon-nudge, 0px)
     entity_picture:
       - grid-area: i
-      - width: var(--badge-icon-size-current, 28px)
-      - height: var(--badge-icon-size-current, 28px)
+      - width: var(--badge-icon-size-current, var(--badge-icon-size, 28px))
+      - height: var(--badge-icon-size-current, var(--badge-icon-size, 28px))
       - border-radius: 50%
       - object-fit: cover
       - z-index: 4
       - margin-inline-start: var(--badge-icon-nudge, 0px)
     label:
-      - font-size: var(--badge-font-size-current, 13px)
+      - font-size: var(--badge-font-size-current, var(--badge-font-size, 13px))
     state:
-      - font-size: var(--badge-font-size-current, 13px)
+      - font-size: var(--badge-font-size-current, var(--badge-font-size, 13px))
   extra_styles: |
+    :host{
+      /* Desktop / default */
+      --badge-font-size-current:   var(--badge-font-size, 13px);
+      --badge-icon-size-current:   var(--badge-icon-size, 28px);
+      --badge-col-gap-current:     var(--badge-col-gap, 6px);
+      --badge-padding-current:     var(--badge-padding, 4px 13px 4px 8px);
+      --badge-min-height-current:  var(--badge-min-height, 43px);
+      --badge-gap-current:         var(--badge-gap, 8px);
+      --badge-row-gap-current:     var(--badge-row-gap, 6px);
+      --badge-top-gap-current:     var(--badge-top-gap, 6px);
+      --badge-subline-lh-current:  var(--badge-subline-lh, 1.15);
+
+      --media-sub-opacity: .82;
+    }
+
+    @media (max-width: 768px), (max-height: 500px){
+      :host{
+        /* Mobile overrides – driven by your *-mobile theme vars */
+        --badge-font-size-current:   var(--badge-font-size-mobile, var(--badge-font-size, 13px));
+        --badge-icon-size-current:   var(--badge-icon-size-mobile, var(--badge-icon-size, 28px));
+        --badge-col-gap-current:     var(--badge-col-gap-mobile, var(--badge-col-gap, 6px));
+        --badge-padding-current:     var(--badge-padding-mobile, var(--badge-padding, 4px 13px 4px 8px));
+        --badge-min-height-current:  var(--badge-min-height-mobile, var(--badge-min-height, 43px));
+        --badge-gap-current:         var(--badge-gap-mobile, var(--badge-gap, 8px));
+        --badge-row-gap-current:     var(--badge-row-gap-mobile, var(--badge-row-gap, 6px));
+        --badge-top-gap-current:     var(--badge-top-gap-mobile, var(--badge-top-gap, 6px));
+        --badge-subline-lh-current:  var(--badge-subline-lh-mobile, var(--badge-subline-lh, 1.15));
+      }
+    }
+
     ha-card::before{ z-index: 3 !important; }
     ha-card::after{  z-index: 2 !important; }
 
     @keyframes fadeIn { from{opacity:0} to{opacity:1} }
 
-    :host{
-      --media-sub-opacity: .82;
-    }
 
 # Air Quality
 homio_badge_air_quality:
@@ -318,6 +344,7 @@ homio_badge_plex:
 
   styles:
     card:
+      - --media-sub-opacity: .86
       - display: >
           [[[
             const st = String(entity?.state || 'off').toLowerCase();
@@ -402,7 +429,9 @@ homio_badge_media:
   styles:
     card:
       - box-shadow: none !important
-      - margin-inline-start: var(--badge-inset-start, 4px)
+      - margin-inline-start: var(--badge-inset-start, 0px)
+      - margin-left: -1px
+      - min-height: calc(var(--badge-min-height-mobile) + 4px) !important
       - --badge-rim-width: 1.4px
       - --badge-rim-alpha: 0.24
       - --badge-rim-glow: 0.12
@@ -557,20 +586,30 @@ homio_badge_media:
             - display: none
 
   extra_styles: |
+    :host ha-card{
+      min-height: var(--badge-min-height-current, var(--badge-min-height, 52px)) !important;
+    }
+
+    @media (max-width: 768px), (max-height: 500px){
+      :host ha-card{
+        min-height: var(--badge-min-height-current, var(--badge-min-height-mobile, 44px)) !important;
+      }
+    }
+
     /* EQ icon block */
     #ic{
       grid-area:i !important;
       display:grid !important;
       place-items:center center !important;
-      width:var(--badge-icon-size,28px)!important;
-      height:var(--badge-icon-size,28px)!important;
+      width:var(--badge-icon-size-current, var(--badge-icon-size,28px)) !important;
+      height:var(--badge-icon-size-current, var(--badge-icon-size,28px)) !important;
       padding-left:0 !important;
       box-sizing:border-box;
       z-index:4;
     }
     #ic > .eq{
-      width:calc(var(--badge-icon-size,28px)*.88);
-      height:calc(var(--badge-icon-size,28px)*.88);
+      width:calc(var(--badge-icon-size-current, var(--badge-icon-size,28px))*.88);
+      height:calc(var(--badge-icon-size-current, var(--badge-icon-size,28px))*.88);
       display:grid;
       grid-auto-flow:column;
       align-items:center;
@@ -601,7 +640,10 @@ homio_badge_media:
       --media-marquee-speed: var(--media_marquee_speed, 14s);
       --media-marquee-gap: var(--media_marquee_gap, 32px);
       --media-title-line-height: var(--media_title_line_height, 1.35em);
-      --media-title-size: var(--media_title_size, calc(var(--badge-font-size,13px) - 1px));
+      --media-title-size: var(
+        --media_title_size,
+        calc(var(--badge-font-size-current, 13px) - 1px)
+      );
       --media-sub-opacity: .75;
     }
 
@@ -803,7 +845,7 @@ homio_badge_media:
       background-position: 50% 50%;
       filter: blur(var(--rim-blur, 18px)) saturate(1.35) brightness(1.06) contrast(1.06);
       mix-blend-mode: screen;
-      padding: calc(var(--badge-rim-width, 1.6px) + 10px);
+      padding: calc(var(--badge-rim-width, .55px) + 10px);
       -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
               mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
       -webkit-mask-composite: xor;
@@ -813,7 +855,7 @@ homio_badge_media:
     }
 
     ha-card::before{
-      --rim-w: var(--badge-rim-width, 1.6px);
+      --rim-w: var(--badge-rim-width, .55px);
       --rim-a: var(--badge-rim-alpha, .14);
       --rim-glow-a: var(--badge-rim-glow, .05);
       --rim-boost: .02;
