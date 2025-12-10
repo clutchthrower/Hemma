@@ -147,8 +147,6 @@ homio-next:
   homio-entity-padding-mobile: 20px
   homio-entity-name-font-desktop: 18px
   homio-entity-state-font-desktop: 15px
-  hero-temp-font-size-desktop: 16px
-  hero-temp-font-size-mobile: 14px
 
   # To switch layouts:
   # - Use Preset A for 2-row grid
@@ -181,7 +179,13 @@ homio-next:
   homio-entity-picture-inactive-filter: brightness(.75) saturate(.9)
   homio-entity-picture-active-filter: none
 
-  # Badges
+  # Temperature Formatting
+  hero-temp-font-size-desktop: 16px
+  hero-temp-font-size-mobile: 14px
+  hero-temp-margin-bottom-desktop: 10px
+  hero-temp-margin-bottom-mobile: 8px
+
+  # Badge Formatting - Global
   badge-background: rgba(0,0,0,0.3)
   badge-title-inactive: rgba(235,235,235,.6)
   badge-inset-start: 4px
@@ -190,21 +194,21 @@ homio-next:
   badge-subline-lh: 1.18
   badge-subline-lh-mobile: 1.15
 
-  # Mobile badge formatting
+  # Badge Formatting - Mobile
   badge-col-gap-mobile: 4px
   badge-gap-mobile: 6px
   badge-row-gap-mobile: 6px
-  badge-top-gap-mobile: 4px
+  badge-top-gap-mobile: 5px
   badge-font-size-mobile: 13px
   badge-padding-mobile: 0 12px 0 8px
   badge-min-height-mobile: 41px
   badge-icon-size-mobile: 26px
   
-  # Desktop badge formatting
+  # Badge Formatting - Desktop
   badge-col-gap: 6px
   badge-gap: 8px
   badge-row-gap: 12px
-  badge-top-gap: 3px
+  badge-top-gap: 5px
   badge-padding: 4px 14px 4px 9px
   badge-min-height: 44px
   badge-icon-size: 28px
