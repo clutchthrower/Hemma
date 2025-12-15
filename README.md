@@ -1,4 +1,4 @@
-# :house: Welcome Hōm
+# :house: Hōm
 
 A modern mobile-friendly fork of the original [Homio](https://github.com/iamtherufus/Homio) dashboard by iamtherufus for Home Assistant, featuring light and dark mode, redesigned cards, new custom badges, and media integration.
 
