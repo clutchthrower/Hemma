@@ -23,7 +23,7 @@ homio_entity:
       value: |
         [[[
           const s = (entity?.state || "").toLowerCase();
-          return ["on","playing","unlocked","cleaning"].includes(s);
+          return ["on","playing","unlocked","cleaning","cool","heat"].includes(s);
         ]]]
       styles:
         card:
@@ -83,9 +83,9 @@ homio_entity:
                     filter .18s ease
 
     name:
-      - color: var(--homio-entity-inactive, var(--primary-text-color)) !important
+      - color: var(--homio-entity-inactive, var(--secondary-text-color)) !important
       - font-weight: 600
-      - text-shadow: 0 0 4px rgba(0, 0, 0, 0.2)
+      - text-shadow: var(--homio-entity-text-shadow, 0 0 3px rgba(0, 0, 0, 0.3))
       - justify-self: start
       - margin-bottom: 5px
       - font-size: |
@@ -103,7 +103,7 @@ homio_entity:
 
     state:
       - text-transform: capitalize
-      - color: var(--secondary-text-color) !important
+      - color: var(--homio-entity-inactive, var(--secondary-text-color)) !important
       - font-size: |
           [[[
             const isMobile = window.innerWidth <= 768;
@@ -111,7 +111,7 @@ homio_entity:
               ? 'var(--homio-entity-state-font-mobile, 13px)'
               : 'var(--homio-entity-state-font-desktop, 14px)';
           ]]]
-      - text-shadow: 0 0 2px rgba(0, 0, 0, 0.1)
+      - text-shadow: var(--homio-entity-text-shadow, 0 0 3px rgba(0, 0, 0, 0.3))
       - justify-self: start
       - font-weight: 700
       - opacity: 0.85

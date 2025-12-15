@@ -9,7 +9,7 @@ homio_time:
     name:
       - color: var(--primary-text-color)
       - letter-spacing: 1px
-      - font-size: 16px
+      - font-size: 18px
       - text-transform: uppercase
       - font-weight: 700
       - justify-self: start

@@ -7,7 +7,7 @@ homio_nav_button:
   styles:
     name:
       - color: var(--primary-text-color)
-      - font-size: 16px
+      - font-size: 18px
       - font-weight: 700
       - border-bottom: >
           [[[ if(variables.path === window.location.pathname) {return "2px solid
