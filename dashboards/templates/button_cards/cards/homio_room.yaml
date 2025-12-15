@@ -44,7 +44,7 @@ homio_room:
       - --hero-img: >
           [[[
             const img = variables.image || 'default';
-            const url = `/local/images/Homio/rooms/${img}.jpg`;
+            const url = `/local/homio/rooms/${img}.jpg`;
             return `url("${url}")`;
           ]]]
       - --hero-img-pos: >

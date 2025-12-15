@@ -8,7 +8,7 @@ homio_entity:
   entity_picture: |
     [[[
       const icon = variables.icon || "default";
-      return `/local/images/Homio/icons/${icon}.svg`;
+      return `/local/homio/icons/${icon}.svg`;
     ]]]
 
   state_display: |

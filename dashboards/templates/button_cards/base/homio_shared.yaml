@@ -9,10 +9,10 @@ homio_shared:
       opacity: 0;
       pointer-events: none;
       background-image:
-        url("/local/images/Homio/rooms/home-demo.jpg"),
-        url("/local/images/Homio/rooms/livingroom-demo.jpg"),
-        url("/local/images/Homio/rooms/kitchen-demo.jpg"),
-        url("/local/images/Homio/rooms/bedroom-demo.jpg");
+        url("/local/homio/rooms/home-demo.jpg"),
+        url("/local/homio/rooms/livingroom-demo.jpg"),
+        url("/local/homio/rooms/kitchen-demo.jpg"),
+        url("/local/homio/rooms/bedroom-demo.jpg");
       background-repeat: no-repeat;
       background-size: cover;
     }
