@@ -14,8 +14,7 @@ A modern mobile-friendly fork of the original [Homio](https://github.com/iamther
 
 ## Based on Homio
 
-This project is built on top of the excellent work in [iamtherufus/Homio](https://github.com/iamtherufus/Homio).  
-If you’re new to Homio in general, you should absolutely read their README first for the full background, philosophy, and original setup guide:
+This project is built on top of the excellent work in [iamtherufus/Homio](https://github.com/iamtherufus/Homio). If you’re new to Homio in general, you should absolutely read their README first for the full background, philosophy, and original setup guide:
 
 > 👉 Original project & docs: https://github.com/iamtherufus/Homio
 
