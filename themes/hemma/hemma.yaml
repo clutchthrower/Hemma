@@ -60,7 +60,7 @@ Hemma:
       button-card-box-shadow: var(--ha-shadow-dark)
       button-card-box-shadow-active: var(--ha-shadow-dark-active)
       hemma-nav-bg: rgba(0,0,0,.3)
-      hemma-nav-border: rgba(240,240,240,0.11)
+      hemma-nav-border: rgba(240,240,240,0.16)
       hemma-nav-inactive-opacity: .6
       hemma-nav-icon: rgba(240,240,240,.8)
       hemma-nav-icon-active: rgba(255,255,255,1)
@@ -100,9 +100,9 @@ Hemma:
 
   # Rounded Cards
   ha-shadow-light: >
-    inset 6px 6px 10px -10px rgba(255,255,255,0.20),
+    inset 6px 6px 10px -10px rgba(255,255,255,0.13),
     inset -6px -6px 10px -10px rgba(255,255,255,0.16),
-    inset 0 0 3px -1px rgba(255,255,255,0.38),
+    inset 0 0 3px -1px rgba(255,255,255,0.24),
     0 14px 22px rgba(0,0,0,0.04)
 
   ha-shadow-dark: >
@@ -178,7 +178,7 @@ Hemma:
   hemma-entity-col-width-desktop: 280px
   hemma-entity-justify-desktop: flex-start
   hemma-entity-right-inset-desktop: 0px
-  hemma-entity-bottom-desktop: 40px
+  hemma-entity-bottom-desktop: 20px
   hemma-entity-shadow-pad-right-desktop: 0px
   hemma-entity-overflow-y-desktop: hidden
 

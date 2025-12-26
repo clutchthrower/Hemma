@@ -113,7 +113,7 @@ views:
             template:
               - hemma_light
             entity: light.living_room
-            name: Lightsf
+            name: Lights
 
           - type: custom:button-card
             variables:

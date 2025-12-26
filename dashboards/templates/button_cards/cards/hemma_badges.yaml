@@ -719,7 +719,7 @@ hemma_badge_media:
     :host{
       --matte-dim: .045;
       --matte-hi-dim: .065;
-      --matte-blur: 32px;
+      --matte-blur: 30px;
       --matte-sat: 1.62;
       --matte-contrast: 1.16;
       --matte-bright: 1.05;
@@ -727,6 +727,10 @@ hemma_badge_media:
       --matte-wash1: .006;
       --matte-wash2: .032;
       --matte-wash3: .024;
+
+      /* Local speeds: slow + subtle */
+      --media-orbit-speed: 30s;
+      --media-breathe-speed: 40s;
     }
 
     :host ha-card::after{
@@ -771,77 +775,62 @@ hemma_badge_media:
         saturate(var(--matte-sat))
         brightness(var(--matte-bright))
         contrast(var(--matte-contrast));
-      will-change: background-position, filter;
+      transform-origin: 50% 50%;
+      will-change: background-position, background-size, filter;
       transform: translateZ(0);
       animation:
-        orbit   var(--media-orbit, 52s)  linear infinite,
-        breathe var(--media-breathe, 36s) ease-in-out infinite;
+        orbit   var(--media-orbit-speed, 30s) ease-in-out infinite,
+        breathe var(--media-breathe-speed, 40s) ease-in-out infinite;
       animation-play-state: var(--anim-play, running);
     }
 
+    /* Subtle left<->right drift of the artwork stack (layers 8–10) */
     @keyframes orbit{
       0%{
         background-position:
           50% 50%,50% 50%,50% 50%,50% 50%,
-          66% 50%, 40% 66%, 60% 34%, 50% 50%;
-      }
-      25%{
-        background-position:
-          50% 50%,50% 50%,50% 50%,50% 50%,
-          50% 66%, 34% 50%, 66% 50%, 50% 50%;
+          50% 50%,50% 50%,50% 50%,
+          40% 50%,40% 50%,40% 50%,
+          50% 50%,50% 50%;
       }
       50%{
         background-position:
           50% 50%,50% 50%,50% 50%,50% 50%,
-          34% 50%, 50% 34%, 50% 66%, 50% 50%;
-      }
-      75%{
-        background-position:
-          50% 50%,50% 50%,50% 50%,50% 50%,
-          50% 34%, 66% 50%, 34% 50%, 50% 50%;
+          50% 50%,50% 50%,50% 50%,
+          60% 50%,60% 50%,60% 50%,
+          50% 50%,50% 50%;
       }
       100%{
         background-position:
           50% 50%,50% 50%,50% 50%,50% 50%,
-          66% 50%, 40% 66%, 60% 34%, 50% 50%;
+          50% 50%,50% 50%,50% 50%,
+          40% 50%,40% 50%,40% 50%,
+          50% 50%,50% 50%;
       }
     }
 
+    /* Gentle zoom breathing so colors morph but don't scream */
     @keyframes breathe{
       0%{
         background-size:
-          100% 100%,100% 100%,100% 100%,160% 160%,
-          280% 280%,240% 240%,320% 320%,
-          220% 220%,220% 220%,220% 220%,
-          120% 120%,120% 120%;
-      }
-      25%{
-        background-size:
-          100% 100%,100% 100%,100% 100%,158% 158%,
-          300% 300%,255% 255%,335% 335%,
-          230% 230%,230% 230%,230% 230%,
-          120% 120%,120% 120%;
+          100% 100%,100% 100%,100% 100%,170% 170%,
+          310% 310%,270% 270%,350% 350%,
+          260% 260%,260% 260%,260% 260%,
+          130% 130%,130% 130%;
       }
       50%{
         background-size:
-          100% 100%,100% 100%,100% 100%,164% 164%,
-          285% 285%,270% 270%,325% 325%,
-          240% 240%,240% 240%,240% 240%,
-          120% 120%,120% 120%;
-      }
-      75%{
-        background-size:
-          100% 100%,100% 100%,100% 100%,160% 160%,
-          295% 295%,250% 250%,340% 340%,
-          230% 230%,230% 230%,230% 230%,
-          120% 120%,120% 120%;
+          100% 100%,100% 100%,100% 100%,178% 178%,
+          330% 330%,290% 290%,370% 370%,
+          285% 285%,285% 285%,285% 285%,
+          130% 130%,130% 130%;
       }
       100%{
         background-size:
-          100% 100%,100% 100%,100% 100%,160% 160%,
-          280% 280%,240% 240%,320% 320%,
-          220% 220%,220% 220%,220% 220%,
-          120% 120%,120% 120%;
+          100% 100%,100% 100%,100% 100%,170% 170%,
+          310% 310%,270% 270%,350% 350%,
+          260% 260%,260% 260%,260% 260%,
+          130% 130%,130% 130%;
       }
     }
 
