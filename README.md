@@ -100,6 +100,7 @@ Example layout:
     └── hemma/
         ├── icons/                 # UI icons
         └── rooms/                 # Room/Background images
+        ├── layout-card-modified/  # Layout card
 
 ```
 
