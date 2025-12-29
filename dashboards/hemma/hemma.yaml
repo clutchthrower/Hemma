@@ -1,5 +1,6 @@
 # Dashboard
 button_card_templates: !include_dir_merge_named /config/dashboards/templates/button_cards
+
 kiosk_mode:
   hide_header: true
   hide_sidebar: false
@@ -9,6 +10,7 @@ kiosk_mode:
     hide_sidebar: false
 
 views:
+  # Home
   - type: custom:grid-layout
     title: home
     path: home
@@ -16,24 +18,45 @@ views:
     cards:
       - type: custom:button-card
         template: hemma_room
+        name: Home
         variables:
           image: home-demo
           image_position: center center
+
           show_quality: false
           quality_sensor: sensor.home_air_quality
+
           show_humid: false
           humid_sensor: sensor.home_humidity
+
           show_temp: true
           temp_sensor: sensor.home_temperature
+
           show_motion: false
           motion_sensor: binary_sensor.hue_motion_sensor_motion
+
           show_presence: true
+          presence_entity_1: sensor.person_1
+          presence_entity_2: sensor.person_2
+
           show_media_badge: true
-        name: Home
+
+          show_media_player_1: true
+          media_player_1: media_player.spotify
+
+          show_media_player_2: true
+          media_player_2: media_player.living_room_apple_tv
+
+          show_media_player_3: true
+          media_player_3: media_player.kitchen
+
+          show_media_player_4: true
+          media_player_4: media_player.bedroom_apple_tv
+
       - !include /config/dashboards/templates/includes/hemma_navbar_mobile.yaml
 
       - type: custom:layout-card
-        class: hemma-entities  
+        class: hemma-entities
         layout_type: custom:grid-layout
         layout: !include /config/dashboards/templates/includes/hemma_entity_layout.yaml
         cards:
@@ -70,27 +93,32 @@ views:
             entity: camera.front_door_live_view
             name: Doorbell
 
+  # Room 1
   - type: custom:grid-layout
     title: living-room
     path: living-room
     layout: !include /config/dashboards/templates/includes/hemma_screen_layout.yaml
     cards:
       - type: custom:button-card
+        template: hemma_room
+        name: Living Room
         variables:
           image: livingroom-demo
           image_position: center center
+
           show_humid: true
           humid_sensor: sensor.purifier_cool_humidity
+
           show_temp: true
           temp_sensor: sensor.living_room_temperature
+
           show_quality: true
           quality_sensor: sensor.air_quality_dyson_overall
-        template: hemma_room
-        name: Living Room
+
       - !include /config/dashboards/templates/includes/hemma_navbar_mobile.yaml
 
       - type: custom:layout-card
-        class: hemma-entities  
+        class: hemma-entities
         layout_type: custom:grid-layout
         layout: !include /config/dashboards/templates/includes/hemma_entity_layout.yaml
         cards:
@@ -161,23 +189,28 @@ views:
             entity: plant.rubber_tree
             name: Rubber Tree
 
+  # Room 2
   - type: custom:grid-layout
     title: kitchen
     path: kitchen
     layout: !include /config/dashboards/templates/includes/hemma_screen_layout.yaml
     cards:
       - type: custom:button-card
+        template: hemma_room
+        name: Kitchen
         variables:
           image: kitchen-demo
           image_position: center center
+
           show_humid: true
           humid_sensor: sensor.hub_2_humidity
+
           show_temp: true
           temp_sensor: sensor.hub_2_temperature
+
           show_quality: true
           quality_sensor: sensor.air_quality_dyson_overall
-        template: hemma_room
-        name: Kitchen
+
       - !include /config/dashboards/templates/includes/hemma_navbar_mobile.yaml
 
       - type: custom:layout-card
@@ -217,25 +250,31 @@ views:
             entity: media_player.kitchen_homepod
             name: HomePod
 
+  # Room 3
   - type: custom:grid-layout
     title: bedroom
     path: bedroom
     layout: !include /config/dashboards/templates/includes/hemma_screen_layout.yaml
     cards:
       - type: custom:button-card
+        template: hemma_room
+        name: Bedroom
         variables:
           image: bedroom-demo
           image_position: center center
+
           show_humid: true
           humid_sensor: sensor.monstera_air_humidity
+
           show_quality: true
           quality_sensor: sensor.air_purifier_air_quality_level
+
           show_temp: true
           temp_sensor: sensor.bedroom_temperature
+
           show_motion: true
           motion_sensor: binary_sensor.hue_motion_sensor_motion
-        template: hemma_room
-        name: Bedroom
+
       - !include /config/dashboards/templates/includes/hemma_navbar_mobile.yaml
 
       - type: custom:layout-card
@@ -287,7 +326,7 @@ views:
               - hemma_media
             entity: media_player.bedroom
             name: Sonos
-            
+
           - type: custom:button-card
             variables:
               icon: humidifier

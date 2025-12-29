@@ -15,20 +15,20 @@ hemma_room:
     - input_boolean.hemma_mobile_navigation
 
   variables:
-    image: home
-    image_position: center center
+    image:
+    image_position:
     show_quality: false
-    quality_sensor: sensor.home_air_quality
     show_humid: false
-    humid_sensor: sensor.home_humidity
-    show_temp: true
-    temp_sensor: sensor.home_temperature
+    show_temp: false
     show_motion: false
-    motion_sensor: binary_sensor.hue_motion_sensor_motion
     show_presence: false
-    presence_entity_1: sensor.person_1
-    presence_entity_2: sensor.person_2
+    presence_entity_1:
+    presence_entity_2:
     show_media_badge: false
+    show_media_player_1: false
+    show_media_player_2: false
+    show_media_player_3: false
+    show_media_player_4: false
 
   tap_action: { action: none }
   hold_action: { action: none }
@@ -303,17 +303,69 @@ hemma_room:
         cards:
           - type: custom:button-card
             template: hemma_badge_media
-            entity: media_player.spotify
-
-          - type: custom:button-card
-            template: hemma_badge_plex
-            entity: binary_sensor.plex_active_stream
-            variables: { session_entity: sensor.plex_active_stream_all }
+            entity: '[[[ return variables.media_player_1 ]]]'
+            styles:
+              card:
+                - display: >
+                    [[[
+                      if (!variables.show_media_player_1) return 'none';
+                      const id = variables.media_player_1;
+                      const st = id && states[id]?.state
+                        ? String(states[id].state).toLowerCase()
+                        : 'unknown';
+                      return ['playing','paused','buffering'].includes(st)
+                        ? 'inline-grid'
+                        : 'none';
+                    ]]]
 
           - type: custom:button-card
             template: hemma_badge_media
-            entity: media_player.living_room_apple_tv
+            entity: '[[[ return variables.media_player_2 ]]]'
+            styles:
+              card:
+                - display: >
+                    [[[
+                      if (!variables.show_media_player_2) return 'none';
+                      const id = variables.media_player_2;
+                      const st = id && states[id]?.state
+                        ? String(states[id].state).toLowerCase()
+                        : 'unknown';
+                      return ['playing','paused','buffering'].includes(st)
+                        ? 'inline-grid'
+                        : 'none';
+                    ]]]
 
           - type: custom:button-card
             template: hemma_badge_media
-            entity: media_player.bedroom_apple_tv
+            entity: '[[[ return variables.media_player_3 ]]]'
+            styles:
+              card:
+                - display: >
+                    [[[
+                      if (!variables.show_media_player_3) return 'none';
+                      const id = variables.media_player_3;
+                      const st = id && states[id]?.state
+                        ? String(states[id].state).toLowerCase()
+                        : 'unknown';
+                      return ['playing','paused','buffering'].includes(st)
+                        ? 'inline-grid'
+                        : 'none';
+                    ]]]
+
+          - type: custom:button-card
+            template: hemma_badge_media
+            entity: '[[[ return variables.media_player_4 ]]]'
+            styles:
+              card:
+                - display: >
+                    [[[
+                      if (!variables.show_media_player_4) return 'none';
+                      const id = variables.media_player_4;
+                      const st = id && states[id]?.state
+                        ? String(states[id].state).toLowerCase()
+                        : 'unknown';
+                      return ['playing','paused','buffering'].includes(st)
+                        ? 'inline-grid'
+                        : 'none';
+                    ]]]
+
