@@ -29,3 +29,7 @@ deps/
 .vscode/
 .idea/
 .DS_Store
+
+# Cloning less
+LISENSE
+README.md
